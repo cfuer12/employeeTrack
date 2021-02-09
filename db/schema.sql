@@ -13,7 +13,7 @@ CREATE TABLE department (
 CREATE TABLE role (
   id INT auto_increment,
   title VARCHAR(30) NOT NULL,
-  salary DECIMAL (6,2) NOT NULL,
+  salary DECIMAL (10,2) NOT NULL,
   department_id INT NOT NULL,
   PRIMARY KEY (id)
 );
@@ -27,6 +27,6 @@ CREATE TABLE employee (
   PRIMARY KEY (id)
 );
 
-
--- SELECT * FROM songs;
-
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
