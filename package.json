@@ -1,0 +1,24 @@
+{
+  "name": "employeetrack",
+  "version": "1.0.0",
+  "description": "create an app that will let a user add or view departments, rolls or employees",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfuer12/employeeTrack.git"
+  },
+  "author": "Carlos Fuerte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfuer12/employeeTrack/issues"
+  },
+  "homepage": "https://github.com/cfuer12/employeeTrack#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
