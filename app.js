@@ -21,6 +21,7 @@ const connection = mysql.createConnection({
       if (err) throw err;
       start();
   });
+
 // prompts for user to answer and input info
 // department, role and employee prompts series of questions
 const departPrompt = [
@@ -86,7 +87,7 @@ const employeePrompt = [
         message: 'What is the employee manager ID?'
     },
 ];
-
+// start prompt
 const start = () => {
     inquirer.prompt( {
         name: 'action',
@@ -106,5 +107,68 @@ const start = () => {
         }
     })
 }
+// allows user to update between "ROLE" or "MANAGER"
+const viewUpdate = () => {
+    inquirer.prompt({
+        name: 'update',
+        type: 'list',
+        message: 'What would you like to update?',
+        choices: ["ROLE", "MANAGER"]
+    })
+    .then((answer) => {
+        if (answer.action === "ROLE") {
+            changeRole();
+        } else if (answer.action === "MANAGER") {
+            changeManager();
+        }
+    })
+}
+// allows user to add to "ROLE" list; create changes
+const changeRole = () => {
+    connection.query("SELECT CONCAT_WS(', ', employee.last_name, employee.first_name) AS `Name` FROM employee ORDER by `Name`", (err, results) => {
+        inquirer.prompt([
+            {
+                name: 'choice',
+                type: 'list',
+                choices() {
+                    const choiceList = [];
+                    results.forEach(({ Name }) => {
+                        choiceList.push(Name);
+                    });
+                    return choiceList;
+                },
+                message: 'Change role for which employee?',
+            },
+            {
+                name: 'role_id',
+                type: 'input',
+                message: 'What is the employees new role ID?'
+            },
+        ])
+        .then((answer) => {
+            let answerArray = answer.choice.split( ', ');
+            const query = connection.query(
+                'UPDATE employee SET ? WHERE ? AND ?',
+                [
+                    {
+                        role_id: answer.role_id
+                    },
+                    {
+                        last_name: answerArray[0]
+                    },
+                    {
+                        first_name: answerArray[1]
+                    }
+                ],
+                (err, res) => {
+                    if (err) throw err;
+                    start();
+                }
+            );
+        });
+    })
+};
 
-
+const chnageManager = () => {
+    connection.query()
+}
