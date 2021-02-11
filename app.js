@@ -5,7 +5,7 @@ const express = require("express");
 const cTable = require("console.table");
 // find a way to make pass private??
 
-// Express
+
 const app = express();
 
 // Connection
@@ -17,11 +17,9 @@ const connection = mysql.createConnection({
   database: "tracker_db",
 });
 
-// Parse request as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Connetion ID
 connection.connect(function (err) {
     if (err) throw err;
     console.log(`Connected as ID ${connection.threadId}`);
