@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "cFuer@12",
   database: "tracker_db",
 });
 
@@ -37,13 +37,13 @@ function start() {
           message: "What would you like to do?",
           name: "choice",
           choices: [
-            "View All Employees?",
-            "View All Employee's By Roles?",
+            "View All Employees",
+            "View All Employee's By Roles",
             "View all Emplyees By Deparments",
             "Update Employee",
-            "Add Employee?",
-            "Add Role?",
-            "Add Department?",
+            "Add Employee",
+            "Add Role",
+            "Add Department",
             "Exit"
           ]
         }
