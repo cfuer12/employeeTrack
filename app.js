@@ -4,7 +4,6 @@ const mysql = require("mysql");
 const express = require("express");
 const cTable = require("console.table");
 // find a way to make pass private??
-// const env = require("dotenv").config() ;
 
 // Express
 const app = express();
