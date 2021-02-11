@@ -27,16 +27,22 @@ CREATE TABLE employee (
   PRIMARY KEY (id)
 );
 
-SELECT employee.id AS `ID`, CONCAT_WS(', ', employee.last_name, employee.first_name) AS `Name`, role.title AS `Role`, role.salary AS `Salary`, department.name AS `Department`, CONCAT_WS(', ', managerInfo.last_name, managerInfo.first_name) AS `Manager`
-FROM employee
-RIGHT JOIN role ON employee.role_id = role.id
-LEFT JOIN department on role.department_id = department.id
-LEFT JOIN employee AS managerInfo on employee.manager_id = managerInfo.id;
+INSERT INTO department (name) VALUES ("Corporate");
+INSERT INTO department (name) VALUES ("Data Analyst");
+INSERT INTO department (name) VALUES ("Development");
 
-SELECT role.id AS `ID`,  role.title AS `Role`, role.salary AS `Salary`, department.name AS `Department`
-FROM role
-INNER JOIN department on role.department_id = department.id;
+INSERT INTO role (title, salary, department_id) VALUES ("Senior Director", "90000", "1");
+INSERT INTO role (title, salary, department_id) VALUES ("Analyst Intern", "40000", "2");
+INSERT INTO role (title, salary, department_id) VALUES ("Senior Analyst", "80000", "2");
+INSERT INTO role (title, salary, department_id) VALUES ("Director", "85000", "3");
+INSERT INTO role (title, salary, department_id) VALUES ("Junior Developer", "70000", "3");
 
--- SELECT * FROM department;
--- SELECT * FROM role;
--- SELECT * FROM employee;
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Carlos", "Fuerte", "5", "5");
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Tate", "Kinsella", "2", "4");
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Julia", "Catherine", "1", NULL);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Tafari", "Deguma", "3", "3");
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("Alan", "Figueroa", "4", "3");
+
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
